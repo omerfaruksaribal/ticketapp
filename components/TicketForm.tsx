@@ -18,7 +18,6 @@ import {
 } from './ui/select';
 import { Button } from './ui/button';
 import axios from 'axios';
-import { Link } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Ticket } from '@prisma/client';
 

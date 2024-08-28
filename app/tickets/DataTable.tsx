@@ -9,6 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Ticket } from '@prisma/client';
+import Link from 'next/link';
 import React from 'react';
 
 interface Props {
@@ -36,7 +37,9 @@ const DataTable = ({ tickets }: Props) => {
             {tickets
               ? tickets.map((ticket) => (
                   <TableRow key={ticket.id} data-href="/">
-                    <TableCell>{ticket.title}</TableCell>
+                    <TableCell className="flex justify-start">
+                      {ticket.title}
+                    </TableCell>
                     <TableCell>
                       <div className="flex justify-center">
                         <TicketStatusBadge status={ticket.status} />
@@ -48,7 +51,7 @@ const DataTable = ({ tickets }: Props) => {
                         <TicketPriority priority={ticket.priority} />
                       </div>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="flex justify-between items-center">
                       {ticket.createdAt.toLocaleDateString('tr-TR', {
                         year: '2-digit',
                         month: '2-digit',
@@ -57,6 +60,12 @@ const DataTable = ({ tickets }: Props) => {
                         minute: '2-digit',
                         hour12: false,
                       })}
+                      <Link
+                        href={`/tickets/${ticket.id}`}
+                        className="ml-4 px-3 py-1 text-sm text-black bg-red-600 rounded-lg hover:bg-red-400 cursor-pointer"
+                      >
+                        View Details
+                      </Link>
                     </TableCell>
                   </TableRow>
                 ))
