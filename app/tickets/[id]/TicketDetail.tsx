@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Ticket } from '@prisma/client';
 import {
   Card,
@@ -13,6 +13,7 @@ import TicketPriority from '@/components/TicketPriority';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import ReactMarkDown from 'react-markdown';
+import DeleteButton from './DeleteButton';
 
 interface Props {
   ticket: Ticket;
@@ -60,22 +61,17 @@ const TicketDetail = ({ ticket }: Props) => {
       <div className="mx-5 flex lg:flex-col lg:mx-0 gap-2 justify-center">
         <Link
           href="/tickets"
-          className={`${buttonVariants({ variant: 'default' })}`}
+          className={`${buttonVariants({ variant: 'destructive' })}`}
         >
           Tickets Page
         </Link>
         <Link
           href={`/tickets/edit/${ticket.id}`}
-          className={`${buttonVariants({ variant: 'default' })}`}
+          className={`${buttonVariants({ variant: 'destructive' })}`}
         >
           Edit Ticket
         </Link>
-        <Link
-          href={`/tickets/edit/${ticket.id}`}
-          className={`${buttonVariants({ variant: 'default' })}`}
-        >
-          Delete Ticket
-        </Link>
+        <DeleteButton ticketId={ticket.id} />
       </div>
     </div>
   );
