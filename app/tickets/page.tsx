@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import Pagination from '@/components/Pagination';
 import { Status, Ticket } from '@prisma/client';
+import StatusFilter from '@/components/StatusFilter';
 
 export interface SearchParams {
   status: Status;
@@ -55,6 +56,7 @@ const Tickets = async ({ searchParams }: { searchParams: SearchParams }) => {
         >
           Create New Ticket
         </Link>
+        <StatusFilter />
       </div>
       <DataTable tickets={tickets} searchParams={searchParams} />
       <Pagination
