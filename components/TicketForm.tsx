@@ -52,8 +52,12 @@ const TicketForm = ({ ticket }: Props) => {
       router.push('/tickets');
       router.refresh();
     } catch (error) {
-      setError('Unknown Error Occured');
       setIsSubmitting(false);
+      if (error instanceof Error) {
+        setError('Error Occurred: ' + error.message);
+      } else {
+        setError('An unknown error occurred.');
+      }
       console.log('error', error);
     }
   }
